@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { User } from './user.entity';
 
 @Entity()
 export class Role { 
@@ -12,6 +13,7 @@ export class Role {
     @Column({type: 'varchar', default: 'ACTIVE'})
     state: string;
 
-
+    @OneToMany(type => User, user => user.role)
+    users: User[]
 
 }

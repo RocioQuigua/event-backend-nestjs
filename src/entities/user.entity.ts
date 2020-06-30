@@ -1,4 +1,4 @@
-import { Entity, PrimaryColumn, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
+import { Entity, PrimaryColumn, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, OneToOne } from 'typeorm';
 import { Role } from './role.entity';
 import { Profile } from './profile.entity';
 
@@ -8,7 +8,10 @@ export class User{
     id: number;
 
     @Column({type: 'varchar', nullable: false})
-    name: string;
+    username: string;
+    
+    @Column({type: 'varchar', nullable: false})
+    email: string;
 
     @Column({type: 'varchar', nullable: false})
     password: string;
@@ -16,14 +19,13 @@ export class User{
     @Column({type: 'varchar', default: 'ACTIVE'})
     state: string;
 
-    @ManyToOne(type =>Role, role => role.id, {cascade: true} )
+    @ManyToOne(type =>Role, role => role.users)
     @JoinColumn({name: 'fk_role'})
-    fk_role: Role;
+    role: Role;
 
-    @ManyToOne(type => Profile, profile => profile.id)
+    @OneToOne(type => Profile, profile => Profile, {cascade: true})
     @JoinColumn({name: 'fk_profile'})
-    fk_person: Profile;
-
+    profile: Profile;
 
 }
 
