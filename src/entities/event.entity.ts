@@ -1,8 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, JoinTable, OneToMany } from 'typeorm'
-import { Place } from './place.entity';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm'
 import { TypeEvent } from './typeEvent.entity';
-import { EventToPlace } from './EventToPlace.entity';
-import { type } from 'os';
 import { User } from './user.entity';
 
 @Entity()
@@ -15,11 +12,15 @@ export class Event{
     name: string;
 
     @Column()
+    description: string;
+
+    @Column()
     participants: number;
-   
-    @OneToMany(type => EventToPlace, eventToPlace => eventToPlace.event)
-    eventToPlace!: EventToPlace[];
     
+    @ManyToOne( type => TypeEvent, typeEvent => typeEvent.id)
+    @JoinColumn({name: "fk_event"})
+    typeEvent: TypeEvent; 
+
     @ManyToOne(type => User, user => user.id)
     @JoinColumn({name: "fk_user"})
     user: User;

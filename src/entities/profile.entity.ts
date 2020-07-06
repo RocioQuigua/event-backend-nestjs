@@ -1,6 +1,7 @@
 import { Entity, PrimaryColumn, Column, ManyToOne, JoinColumn, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Service } from './service.entity';
 import { User } from './user.entity';
+import { Qualification } from './qualification.entity';
 
 @Entity()
 export class Profile{
@@ -23,6 +24,10 @@ export class Profile{
     @ManyToOne(type => Service, service => service.id)
     @JoinColumn({name: "fk_service"})
     service: Service;
+
+    @ManyToOne(type => Qualification, qualification => qualification.id)
+    @JoinColumn({name: "fk_qualification"})
+    qualification: Qualification;
 
     @OneToOne(type => User, user => user.profile)
     user: User;

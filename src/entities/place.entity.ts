@@ -1,5 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, OneToMany } from 'typeorm'
-import { EventToPlace } from './EventToPlace.entity';
+import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm'
 
 @Entity()
 export class Place {
@@ -13,10 +12,6 @@ export class Place {
     state: string;
 
     @Column()
-    ubication: string;
-
-    @OneToMany(type => EventToPlace, eventToPlace => eventToPlace.place)
-    EventToPlace!: EventToPlace[];
-
+    ubication: string; 
 
 }
