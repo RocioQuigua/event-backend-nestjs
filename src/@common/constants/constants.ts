@@ -12,6 +12,7 @@ export enum roles {
     BUSINESS = 'BUSINESS',
     CLIENT = 'CLIENT',
     ADMIN  = 'ADMIN',
+    GENERAL = 'GENERAL'
 }
 
 export enum jwt{

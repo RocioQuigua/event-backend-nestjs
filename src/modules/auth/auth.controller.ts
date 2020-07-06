@@ -15,9 +15,9 @@ export class AuthController {
         return this._authService.Login(body);
     }   
 
-    @Post("/register/:role")
-    Register(@Body() body: Register, @Param("role") role: string){
-        return this._authService.Register(body, role);
+    @Post("/register")
+    Register(@Body() body: Register){
+        return this._authService.Register(body);
     }
 
 }

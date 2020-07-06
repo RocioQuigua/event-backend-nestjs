@@ -13,6 +13,7 @@ import { Role } from 'entities/role.entity';
 import { JwtService } from '@nestjs/jwt';
 import { IJwtPayload } from '@common/strategies/jwt.strategy';
 import { Register } from './dto/register.dto';
+import { roles, state } from '@common/constants/constants';
 
 @Injectable()
 export class AuthService {
@@ -78,7 +79,7 @@ export class AuthService {
     };
   }
 
-  async Register(body: Register, role: String) {
+  async Register(body: Register) {
     const {
       firstName,
       secondName,
@@ -102,7 +103,7 @@ export class AuthService {
 
     user.role = await this._roleRepository.findOne({
       where: {
-        name: role,
+        name: roles.GENERAL, state: state.ACTIVE
       },
     });
 
