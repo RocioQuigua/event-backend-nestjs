@@ -2,6 +2,7 @@ import { Entity, PrimaryColumn, Column, ManyToOne, JoinColumn, OneToOne, Primary
 import { Service } from './service.entity';
 import { User } from './user.entity';
 import { Qualification } from './qualification.entity';
+import { type } from 'os';
 
 @Entity()
 export class Profile{
@@ -27,7 +28,7 @@ export class Profile{
 
     @ManyToOne(type => Qualification, qualification => qualification.id)
     @JoinColumn({name: "fk_qualification"})
-    qualification: Qualification;
+    qualification: Qualification; 
 
     @OneToOne(type => User, user => user.profile)
     user: User;

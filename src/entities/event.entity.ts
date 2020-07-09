@@ -9,16 +9,19 @@ export class Event{
     id: number;
 
     @Column()
-    name: string;
-
-    @Column()
     description: string;
 
     @Column()
     participants: number;
+
+    @Column()
+    startDate: number;
+
+    @Column() // horas
+    duration: number;
     
     @ManyToOne( type => TypeEvent, typeEvent => typeEvent.id)
-    @JoinColumn({name: "fk_event"})
+    @JoinColumn({name: "fk_type"})
     typeEvent: TypeEvent; 
 
     @ManyToOne(type => User, user => user.id)

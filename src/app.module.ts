@@ -6,9 +6,10 @@ import { CommonModule } from '@common/common.module';
 import { AuthModule } from 'modules/auth/auth.module';
 import { RoleModule } from 'modules/role/role.module';
 import { UserModule } from 'modules/user/user.module';
+import { EventModule } from 'modules/event/event.module';
 
 @Module({
-  imports: [TypeOrmModule.forRoot(), CommonModule, AuthModule, RoleModule, UserModule],
+  imports: [TypeOrmModule.forRoot(), CommonModule, AuthModule, RoleModule, UserModule, EventModule],
   controllers: [AppController],
   providers: [AppService],
 })
