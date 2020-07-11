@@ -1,0 +1,3 @@
+[submodule "PagEventsFrontEnd"]
+	path = PagEventsFrontEnd
+	url = https://github.com/CarlosPerez93/PagEventsFrontEnd.git
