@@ -12,7 +12,7 @@ import { ServiceModule } from 'modules/service/service.module';
 import { CheckModule } from 'modules/check/check.module';
 
 @Module({
-  imports: [TypeOrmModule.forRoot(), CommonModule, AuthModule,CheckModule, RoleModule, UserModule,ServiceModule, EventModule, ProductModule],
+  imports: [TypeOrmModule.forRoot(), CommonModule, AuthModule,CheckModule, RoleModule, UserModule, EventModule, ProductModule],
   controllers: [AppController],
   providers: [AppService],
 })

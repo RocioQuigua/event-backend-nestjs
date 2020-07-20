@@ -18,7 +18,7 @@ export class Product {
   @Column({ type: 'varchar', nullable: false })
   name: string;
 
-  @Column({ type: 'number', nullable: false })
+  @Column({ type: 'int', nullable: false })
   prise: number;
 
   @Column({ type: 'varchar', nullable: false })

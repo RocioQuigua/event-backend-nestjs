@@ -1,11 +1,11 @@
 import { IsNotEmpty, IsString, IsEmail } from "class-validator";
 
 export class Register {
+
   @IsNotEmpty()
   @IsString()
   firstName: string;
 
-  @IsNotEmpty()
   @IsString()
   secondName: string;
 
@@ -13,14 +13,13 @@ export class Register {
   @IsString()
   firstSurname: string;
 
-  @IsNotEmpty()
   @IsString()
   secondSurname: string;
 
   @IsNotEmpty()
   @IsString()
   username: string;
-
+ 
   @IsNotEmpty()
   @IsEmail()
   email: string;
