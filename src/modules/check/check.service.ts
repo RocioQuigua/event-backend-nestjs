@@ -1,30 +1,26 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Product } from 'entities/product.entity';
 import { Repository } from 'typeorm';
+import { Check } from 'entities/check.entity';
 
 @Injectable()
-export class ProductService {
+export class CheckService {
     constructor(
-        @InjectRepository(Product)
-        private readonly _productRepository: Repository<Product>
+        @InjectRepository(Check)
+        private readonly _checkRepository: Repository<Check>
     ){}
-    
+
     async getOne(){
 
     }
-
     async getAll(){
 
     }
-
-    async createProduct(){
+    async createCheck(){
 
     }
-
-    async updateProduct(){
+    async updateCheck(){
         
     }
-
 
 }

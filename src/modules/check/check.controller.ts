@@ -1,10 +1,10 @@
 import { Controller, Get, Post, Put } from '@nestjs/common';
-import { ProductService } from './product.service';
+import { CheckService } from './check.service';
 
-@Controller('product')
-export class ProductController {
+@Controller('check')
+export class CheckController {
     constructor(
-        private readonly _productService: ProductService
+        private readonly _checkService: CheckService
     ){}
 
     @Get()
@@ -16,15 +16,15 @@ export class ProductController {
     getAll(){
 
     }
-
+    
     @Post("/create")
-    createProduct(){
+    createCheck(){
 
     }
 
     @Put("/update")
-    updateProduct(){
-
+    updateCheck(){
+        
     }
 
 }
