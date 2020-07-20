@@ -103,7 +103,7 @@ export class AuthService {
 
     user.role = await this._roleRepository.findOne({
       where: {
-        name: roles.GENERAL, state: state.ACTIVE
+        name: roles.CLIENT, state: state.ACTIVE
       },
     });
 

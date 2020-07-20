@@ -9,10 +9,9 @@ export enum state {
  
 
 export enum roles {
-    BUSINESS = 'BUSINESS',
+    EMPLOYEE = 'EMPLOYEE',
     CLIENT = 'CLIENT',
     ADMIN  = 'ADMIN',
-    GENERAL = 'GENERAL'
 }
 
 export enum jwt{
