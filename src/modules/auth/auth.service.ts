@@ -88,6 +88,7 @@ export class AuthService {
       username,
       email,
       password,
+      role
     } = body;
 
     const existe = await this.userExists(username, email);
@@ -103,7 +104,7 @@ export class AuthService {
 
     user.role = await this._roleRepository.findOne({
       where: {
-        name: roles.CLIENT, state: state.ACTIVE
+        id: role, state: state.ACTIVE
       },
     });
 

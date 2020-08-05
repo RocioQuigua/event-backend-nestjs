@@ -26,12 +26,25 @@ export class TypeService {
   imagen: string;
 }
 
-
-
 @Entity()
 export class Service {
   @PrimaryGeneratedColumn()
   id: number;
+
+  @Column({ type: "varchar", nullable: false })
+  title: string;
+
+  @Column({ type: "varchar", nullable: false })
+  description: string;
+
+  @Column({ type: 'int', nullable: false })
+  prise: number;
+
+  @Column({ type: 'varchar', nullable: false, default:state.ACTIVE })
+  state: string;
+
+  @Column({ type: 'varchar', nullable: false })
+  imagen: string;
 
   @ManyToOne(
     type => TypeService,
@@ -44,7 +57,7 @@ export class Service {
     type => User,
     user => user.id,
   )
-  @JoinColumn({ name: 'fk_employee' })
-  employee: User;
+  @JoinColumn({ name: 'fk_empresa' })
+  empresa: User;
 }
 

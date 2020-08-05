@@ -18,14 +18,8 @@ export class EventController {
   }
 
   @Post()
-  createEvent(@Body() body: EventCreateDTO, @Query() query) {
-    const { type, userId } = query;
-    return this._eventService.createEvent(body, type, userId);
+  createEvent(@Body() body: EventCreateDTO) { 
+    return this._eventService.createEvent(body);
   }
-
-  @Put()
-  updateEvent(@Body() body: EventCreateDTO, @Query() query){
-    const { id } = query;
-    return this._eventService.updateEvent(body, id);
-  }
+ 
 }

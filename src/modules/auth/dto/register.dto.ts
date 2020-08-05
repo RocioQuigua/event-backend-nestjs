@@ -27,4 +27,6 @@ export class Register {
   @IsNotEmpty()
   @IsString()
   password: string;
+
+  role: number;
 }

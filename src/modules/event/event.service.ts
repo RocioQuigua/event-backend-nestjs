@@ -34,19 +34,17 @@ export class EventService {
     return events;
   }
 
-  async createEvent(body: EventCreateDTO, type: number, userId: number) {
+  async createEvent(body: EventCreateDTO) {
+    const { description, participants, startDate, duration, type, user } = body;
     const event = new Event();
-
-    event.description = body.description;
-    event.participants = body.participants;
-    event.typeEvent = await this._typeEventRepository.findOne({
-      where: {
-        id: type,
-      },
-    });
+    event.description = description;
+    event.participants = participants;
+    event.startDate = startDate;
+    event.duration = duration;
+    event.typeEvent = await this._typeEventRepository.findOne({where:{id: type}});
     event.user = await this._userRepository.findOne({
       where: {
-        id: userId,
+        id: user,
       },
     });
 
@@ -55,12 +53,5 @@ export class EventService {
       status: true,
     };
   }
-
-  async updateEvent(body: EventCreateDTO, id: number){
-    await this.getOne(id);
-    await this._eventRepository.update(id, body);
-    return {
-      status: true
-    }
-  }
+ 
 }

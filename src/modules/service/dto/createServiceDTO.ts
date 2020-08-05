@@ -1,21 +1,22 @@
 import { IsNotEmpty, IsString, IsNumber, IsDate } from 'class-validator';
 
-export class EventCreateDTO{
+export class CreateServiceDTO{
+
+    @IsString()
+    title: string;
+    
     @IsString()
     description: string;
 
     @IsNumber()
-    participants: number;
+    prise: number; 
 
     @IsString()
-    startDate: string;
-
-    @IsNumber()
-    duration: number;
+    imagen: string;
 
     @IsNumber()
     type: number;
 
     @IsNumber()
-    user: number;
+    empresa: number;
 }

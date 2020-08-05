@@ -7,8 +7,7 @@ import {
 } from 'typeorm';
 import { TypeEvent } from './typeEvent.entity';
 import { User } from './user.entity';
-import { Product } from './product.entity';
-
+ 
 @Entity()
 export class Event {
   @PrimaryGeneratedColumn()
@@ -21,13 +20,7 @@ export class Event {
   participants: number;
 
   @Column()
-  startDate: number;
-
-  @ManyToOne(
-    type => Product,
-    product => product.event,
-  )
-  products: Product[];
+  startDate: string;
 
   @Column() // horas
   duration: number;
