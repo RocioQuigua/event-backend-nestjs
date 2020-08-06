@@ -34,6 +34,11 @@ export class EventService {
     return events;
   }
 
+  async getTypes(){
+    const types = await this._typeEventRepository.find();
+    return types;
+  }
+
   async createEvent(body: EventCreateDTO) {
     const { description, participants, startDate, duration, type, user } = body;
     const event = new Event();

@@ -1,4 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { state } from '@common/constants/constants';
 
 @Entity()
 export class TypeEvent{
@@ -9,6 +10,6 @@ export class TypeEvent{
     @Column()
     name: string;
 
-    @Column()
+    @Column({type:"varchar", default: state.ACTIVE})
     state: string;
 }

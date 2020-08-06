@@ -17,6 +17,11 @@ export class EventController {
     return this._eventService.getAll();
   }
 
+  @Get("/types")
+  getTypes(){
+    return this._eventService.getTypes();
+  }
+
   @Post()
   createEvent(@Body() body: EventCreateDTO) { 
     return this._eventService.createEvent(body);

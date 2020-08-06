@@ -6,12 +6,23 @@ import { CommonModule } from '@common/common.module';
 import { AuthModule } from 'modules/auth/auth.module';
 import { RoleModule } from 'modules/role/role.module';
 import { UserModule } from 'modules/user/user.module';
-import { EventModule } from 'modules/event/event.module'; 
+import { EventModule } from 'modules/event/event.module';
 import { ServiceModule } from 'modules/service/service.module';
 import { CheckModule } from 'modules/check/check.module';
+import { CompanyModule } from 'modules/company/company.module';
 
 @Module({
-  imports: [TypeOrmModule.forRoot(), CommonModule, AuthModule,CheckModule, RoleModule, ServiceModule, UserModule, EventModule],
+  imports: [
+    TypeOrmModule.forRoot(),
+    CommonModule,
+    AuthModule,
+    CheckModule,
+    RoleModule,
+    ServiceModule,
+    CompanyModule,
+    UserModule,
+    EventModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
