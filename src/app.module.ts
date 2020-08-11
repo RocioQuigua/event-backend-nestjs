@@ -10,6 +10,7 @@ import { EventModule } from 'modules/event/event.module';
 import { ServiceModule } from 'modules/service/service.module';
 import { CheckModule } from 'modules/check/check.module';
 import { CompanyModule } from 'modules/company/company.module';
+import { PermissionsModule } from 'modules/permissions/permissions.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { CompanyModule } from 'modules/company/company.module';
     CompanyModule,
     UserModule,
     EventModule,
+    PermissionsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
