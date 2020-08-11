@@ -17,14 +17,13 @@ export class PermissionsService {
     const menu = await this.permissionsRepository.
     createQueryBuilder("permissions")
     .leftJoinAndSelect("permissions.menu", "menu") 
-    .leftJoinAndSelect("permissions.role", "role")
-    .leftJoinAndSelect("menu.submenu", "submenu")
+    .leftJoinAndSelect("permissions.role", "role") 
     .getMany();
     return menu;
   }
 
   async getAllRole(role: number) {
-    const menu = await this.menuRepository.find({ where: { role } });
+    const menu = await this.permissionsRepository.find({ where: { role } });
     return menu;
   }
  
