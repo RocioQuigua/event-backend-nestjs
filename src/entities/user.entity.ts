@@ -23,7 +23,7 @@ export class User{
     @JoinColumn({name: 'fk_role'})
     role: Role;
 
-    @OneToOne(type => Profile, profile => Profile, {cascade: true})
+    @OneToOne(type => Profile, profile => Profile, {cascade: true, eager: true})
     @JoinColumn({name: 'fk_profile'})
     profile: Profile;
 

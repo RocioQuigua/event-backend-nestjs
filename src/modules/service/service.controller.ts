@@ -12,12 +12,17 @@ export class ServiceController {
     return this._serviceService.getOne(id);
   }
 
-  @Get("/all")
+  @Get('/all')
   getAll() {
     return this._serviceService.getAll();
   }
 
-  @Post("/create")
+  @Get('/types')
+  getTypes() {
+    return this._serviceService.getTypes();
+  }
+
+  @Post('/create')
   createService(@Body() body: CreateServiceDTO) {
     return this._serviceService.createService(body);
   }

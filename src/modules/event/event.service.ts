@@ -21,8 +21,8 @@ export class EventService {
     const event = await this._eventRepository.findOne(id, {
       relations: ['typeEvent'],
     });
-    if(!event){
-      throw new NotFoundException("El evento no existe")
+    if (!event) {
+      throw new NotFoundException('El evento no existe');
     }
     return event;
   }
@@ -34,7 +34,14 @@ export class EventService {
     return events;
   }
 
-  async getTypes(){
+  async getAllUser(idUser) {
+    const events = await this._eventRepository.find({
+      where: { user: { id: idUser } },
+    });
+    return events;
+  }
+
+  async getTypes() {
     const types = await this._typeEventRepository.find();
     return types;
   }
@@ -46,7 +53,9 @@ export class EventService {
     event.participants = participants;
     event.startDate = startDate;
     event.duration = duration;
-    event.typeEvent = await this._typeEventRepository.findOne({where:{id: type}});
+    event.typeEvent = await this._typeEventRepository.findOne({
+      where: { id: type },
+    });
     event.user = await this._userRepository.findOne({
       where: {
         id: user,
@@ -58,5 +67,4 @@ export class EventService {
       status: true,
     };
   }
- 
 }

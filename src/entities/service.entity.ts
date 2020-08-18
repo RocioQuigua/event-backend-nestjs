@@ -48,14 +48,14 @@ export class Service {
 
   @ManyToOne(
     type => TypeService,
-    typeService => typeService.id,
+    typeService => typeService.id, {eager: true}
   )
-  @JoinColumn({ name: 'fk_type' })
+  @JoinColumn({ name: 'fk_type', })
   typeService: TypeService;
 
   @ManyToOne(
     type => User,
-    user => user.id,
+    user => user.id, {eager: true}
   )
   @JoinColumn({ name: 'fk_empresa' })
   empresa: User;

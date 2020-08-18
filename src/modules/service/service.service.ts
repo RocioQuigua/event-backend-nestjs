@@ -20,6 +20,12 @@ export class ServiceService {
     const service = await this._serviceRepository.findOne(id);
     return service;
   }
+
+  async getTypes() {
+    const types = await this._typeRepository.find();
+    return types;
+  }
+
   async getAll() {
     const services = await this._serviceRepository.find();
     return services;

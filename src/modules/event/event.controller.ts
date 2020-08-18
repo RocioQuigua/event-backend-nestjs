@@ -17,14 +17,19 @@ export class EventController {
     return this._eventService.getAll();
   }
 
-  @Get("/types")
-  getTypes(){
+  @Get('/all/user')
+  getAllUser(@Query() query) {
+    const { idUser } = query;
+    return this._eventService.getAllUser(idUser);
+  }
+
+  @Get('/types')
+  getTypes() {
     return this._eventService.getTypes();
   }
 
   @Post()
-  createEvent(@Body() body: EventCreateDTO) { 
+  createEvent(@Body() body: EventCreateDTO) {
     return this._eventService.createEvent(body);
   }
- 
 }
