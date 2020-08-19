@@ -14,6 +14,9 @@ export class Event {
   id: number;
 
   @Column()
+  name: string;
+
+  @Column()
   description: string;
 
   @Column()

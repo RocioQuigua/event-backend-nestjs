@@ -47,12 +47,13 @@ export class EventService {
   }
 
   async createEvent(body: EventCreateDTO) {
-    const { description, participants, startDate, duration, type, user } = body;
+    const { description, participants, startDate, duration, type, user, name } = body;
     const event = new Event();
     event.description = description;
     event.participants = participants;
     event.startDate = startDate;
     event.duration = duration;
+    event.name = name;
     event.typeEvent = await this._typeEventRepository.findOne({
       where: { id: type },
     });
