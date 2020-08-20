@@ -11,6 +11,7 @@ import { ServiceModule } from 'modules/service/service.module';
 import { CheckModule } from 'modules/check/check.module';
 import { CompanyModule } from 'modules/company/company.module';
 import { PermissionsModule } from 'modules/permissions/permissions.module';
+import { EventServiceModule } from 'modules/event-service/event-service.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { PermissionsModule } from 'modules/permissions/permissions.module';
     UserModule,
     EventModule,
     PermissionsModule,
+    EventServiceModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -7,6 +7,7 @@ import {
 } from 'typeorm';
 import { Event } from './event.entity';
 import { Service } from './service.entity';
+import { state } from '@common/constants/constants';
 
 @Entity()
 export class EventService {
@@ -21,6 +22,6 @@ export class EventService {
   @JoinColumn({ name: 'fk_service' })
   service: Service;
 
-  @Column()
+  @Column({default: state.ACTIVE})
   state: string;
 }

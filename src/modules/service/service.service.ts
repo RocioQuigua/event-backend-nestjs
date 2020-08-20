@@ -22,10 +22,7 @@ export class ServiceService {
   }
 
   async getAllUser(idUser: number) {
-    const services = await this._serviceRepository
-      .createQueryBuilder('service')
-      .where('service.empresa.id = :id', { id: idUser })
-      .getMany();
+    const services = await this._serviceRepository.find({where:{empresa:{id: idUser}}})
     return services;
   }
 
