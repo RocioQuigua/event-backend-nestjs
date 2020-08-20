@@ -21,6 +21,14 @@ export class ServiceService {
     return service;
   }
 
+  async getAllUser(idUser: number) {
+    const services = await this._serviceRepository
+      .createQueryBuilder('service')
+      .where('service.empresa.id = :id', { id: idUser })
+      .getMany();
+    return services;
+  }
+
   async getTypes() {
     const types = await this._typeRepository.find();
     return types;

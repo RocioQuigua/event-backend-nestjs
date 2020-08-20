@@ -12,6 +12,12 @@ export class ServiceController {
     return this._serviceService.getOne(id);
   }
 
+  @Get("/all/empresa")
+  getAllUser(@Query() query){
+    const { id }  = query;
+    return this._serviceService.getAllUser(id);
+  }
+
   @Get('/all')
   getAll() {
     return this._serviceService.getAll();
