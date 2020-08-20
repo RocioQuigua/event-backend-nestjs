@@ -17,6 +17,11 @@ export class EventController {
     return this._eventService.getAll();
   }
 
+  @Post('/upload')
+  getUpload(@Body() body) {
+    return this._eventService.uploadEvent(body);
+  }
+
   @Get('/all/user')
   getAllUser(@Query() query) {
     const { idUser } = query;
@@ -28,7 +33,7 @@ export class EventController {
     return this._eventService.getTypes();
   }
 
-  @Post("/create")
+  @Post('/create')
   createEvent(@Body() body: EventCreateDTO) {
     return this._eventService.createEvent(body);
   }
