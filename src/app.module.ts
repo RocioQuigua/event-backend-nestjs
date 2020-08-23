@@ -8,7 +8,6 @@ import { RoleModule } from 'modules/role/role.module';
 import { UserModule } from 'modules/user/user.module';
 import { EventModule } from 'modules/event/event.module';
 import { ServiceModule } from 'modules/service/service.module';
-import { CheckModule } from 'modules/check/check.module';
 import { CompanyModule } from 'modules/company/company.module';
 import { PermissionsModule } from 'modules/permissions/permissions.module';
 import { EventServiceModule } from 'modules/event-service/event-service.module';
@@ -18,7 +17,6 @@ import { EventServiceModule } from 'modules/event-service/event-service.module';
     TypeOrmModule.forRoot(),
     CommonModule,
     AuthModule,
-    CheckModule,
     RoleModule,
     ServiceModule,
     CompanyModule,

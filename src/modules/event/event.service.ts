@@ -6,6 +6,8 @@ import { EventCreateDTO } from './dto/event-create.dto';
 import { TypeEvent } from 'entities/typeEvent.entity';
 import { User } from 'entities/user.entity';
 import { EventUploadDTO } from './dto/event-upload.dto';
+import { state } from '@common/constants/constants';
+import { TypeEventDTO } from './dto/type-event.dto';
 
 @Injectable()
 export class EventService {
@@ -43,8 +45,18 @@ export class EventService {
   }
 
   async getTypes() {
-    const types = await this._typeEventRepository.find();
+    const types = await this._typeEventRepository.find({
+      where: { state: state.ACTIVE },
+    });
     return types;
+  }
+
+  async createType(body: TypeEventDTO) {
+   const result = await this._typeEventRepository.save(body);
+   return {
+     status: true,
+     id: result.id
+   }
   }
 
   async uploadEvent(body: EventUploadDTO) {

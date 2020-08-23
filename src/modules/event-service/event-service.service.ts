@@ -45,6 +45,26 @@ export class EventServiceService {
     };
   }
 
+
+  async allEvent(idUser: number){
+       const events = this._eventServicioRepository
+      .createQueryBuilder("eventService")
+      .leftJoinAndSelect("eventService.event", "event")
+      .leftJoinAndSelect("eventService.service", "service")
+      .leftJoinAndSelect("service.empresa", "empresa")
+      .where("empresa.id = :id", {id: idUser})
+      .getMany();
+      return events;
+  }
+
+  async changeState(id: number){
+    const result = await this._eventServicioRepository.update(id, { state: state.ASIGNADO});
+    return {
+      status: true
+    }
+  }
+
+
   async delete(id: number) {
     const exists = await this._eventServicioRepository.findOne(id);
 

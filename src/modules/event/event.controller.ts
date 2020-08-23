@@ -1,6 +1,7 @@
 import { Controller, Get, Query, Post, Body, Put } from '@nestjs/common';
 import { EventService } from './event.service';
 import { EventCreateDTO } from './dto/event-create.dto';
+import { TypeEventDTO } from './dto/type-event.dto';
 
 @Controller('event')
 export class EventController {
@@ -20,6 +21,11 @@ export class EventController {
   @Post('/upload')
   getUpload(@Body() body) {
     return this._eventService.uploadEvent(body);
+  }
+
+  @Post('/type/create')
+  createType(@Body() body: TypeEventDTO) {
+    return this._eventService.createType(body);
   }
 
   @Get('/all/user')

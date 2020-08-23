@@ -4,6 +4,8 @@ import { Service, TypeService } from 'entities/service.entity';
 import { Repository } from 'typeorm';
 import { CreateServiceDTO } from './dto/createServiceDTO';
 import { User } from 'entities/user.entity';
+import { CreateTypeDTO } from './dto/create-type-dto';
+import { state } from '@common/constants/constants';
 
 @Injectable()
 export class ServiceService {
@@ -22,13 +24,25 @@ export class ServiceService {
   }
 
   async getAllUser(idUser: number) {
-    const services = await this._serviceRepository.find({where:{empresa:{id: idUser}}})
+    const services = await this._serviceRepository.find({
+      where: { empresa: { id: idUser } },
+    });
     return services;
   }
 
   async getTypes() {
-    const types = await this._typeRepository.find();
+    const types = await this._typeRepository.find({
+      where: { state: state.ACTIVE },
+    });
     return types;
+  }
+
+  async createType(body: CreateTypeDTO) {
+    const result = await this._typeRepository.save(body);
+    return {
+      status: true,
+      id: result.id,
+    };
   }
 
   async getAll() {

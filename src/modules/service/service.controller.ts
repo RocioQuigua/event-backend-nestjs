@@ -1,6 +1,7 @@
 import { Controller, Get, Post, Put, Query, Body } from '@nestjs/common';
 import { ServiceService } from './service.service';
 import { CreateServiceDTO } from './dto/createServiceDTO';
+import { CreateTypeDTO } from './dto/create-type-dto';
 
 @Controller('service')
 export class ServiceController {
@@ -12,9 +13,9 @@ export class ServiceController {
     return this._serviceService.getOne(id);
   }
 
-  @Get("/all/empresa")
-  getAllUser(@Query() query){
-    const { id }  = query;
+  @Get('/all/empresa')
+  getAllUser(@Query() query) {
+    const { id } = query;
     return this._serviceService.getAllUser(id);
   }
 
@@ -26,6 +27,11 @@ export class ServiceController {
   @Get('/types')
   getTypes() {
     return this._serviceService.getTypes();
+  }
+
+  @Get('/types/create')
+  createTypes(@Body() body: CreateTypeDTO) {
+    return this._serviceService.createType(body);
   }
 
   @Post('/create')
