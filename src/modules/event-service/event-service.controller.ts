@@ -18,8 +18,8 @@ export class EventServiceController {
   }
 
   @Get('/all')
-  getAll(@Query() query) {
-    const { idEvent } = query;
+  getAll(@Body() body) {
+    const { idEvent } = body;
     return this._service.all(idEvent);
   }
 }
