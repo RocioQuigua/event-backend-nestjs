@@ -45,7 +45,7 @@ export class EventServiceService {
     };
   }
 
-  async delete(id) {
+  async delete(id: number) {
     const exists = await this._eventServicioRepository.findOne(id);
 
     if (exists.state === state.ASIGNADO) {
