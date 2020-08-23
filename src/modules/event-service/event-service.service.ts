@@ -28,7 +28,7 @@ export class EventServiceService {
         id: event,
         idService: service,
       })
-      .getMany();
+      .getOne(); 
 
     if (exists) {
       throw new NotFoundException('Ya existe el registro');
@@ -50,6 +50,7 @@ export class EventServiceService {
       .leftJoin('eventServicio.event', 'event')
       .leftJoinAndSelect('eventServicio.service', 'service')
       .leftJoinAndSelect('service.empresa', 'empresa')
+      .leftJoinAndSelect('empresa.profile', "profile")
       .where('event.id = :id', { id: idEvent })
       .getMany();
 
