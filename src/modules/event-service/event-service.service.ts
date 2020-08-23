@@ -5,6 +5,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { CreateDTO } from './dto/createEventService.dto';
 import { Service } from 'entities/service.entity';
 import { Event } from 'entities/event.entity';
+import { state } from '@common/constants/constants';
 
 @Injectable()
 export class EventServiceService {
@@ -28,7 +29,7 @@ export class EventServiceService {
         id: event,
         idService: service,
       })
-      .getOne(); 
+      .getOne();
 
     if (exists) {
       throw new NotFoundException('Ya existe el registro');
@@ -44,13 +45,26 @@ export class EventServiceService {
     };
   }
 
+  async delete(id) {
+    const exists = await this._eventServicioRepository.findOne(id);
+
+    if (exists.state === state.ASIGNADO) {
+      throw new NotFoundException('El servicio esta asignado');
+    }
+
+    await this._eventServicioRepository.delete(id);
+    return {
+      status: true,
+    };
+  }
+
   async all(idEvent) {
     const result = await this._eventServicioRepository
       .createQueryBuilder('eventServicio')
       .leftJoin('eventServicio.event', 'event')
       .leftJoinAndSelect('eventServicio.service', 'service')
       .leftJoinAndSelect('service.empresa', 'empresa')
-      .leftJoinAndSelect('empresa.profile', "profile")
+      .leftJoinAndSelect('empresa.profile', 'profile')
       .where('event.id = :id', { id: idEvent })
       .getMany();
 

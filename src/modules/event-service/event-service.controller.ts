@@ -11,6 +11,12 @@ export class EventServiceController {
     return this._service.create(body);
   }
 
+  @Post('/delete')
+  delete(@Query() query) {
+    const { id } = query;
+    return this._service.delete(id);
+  }
+
   @Get('/all')
   getAll(@Query() query) {
     const { idEvent } = query;

@@ -6,6 +6,7 @@ export enum state {
     ACTIVE =  'ACTIVE',
     INACTIVE = 'INACTIVE ',
     PENDING = "PENDING",
+    ASIGNADO =  "ASIGNADO",
 }
  
 
