@@ -1,10 +1,9 @@
 import { IsNotEmpty, IsString, IsNumber, IsDate } from 'class-validator';
 
-export class CreateDTO{
+export class CreateDTO {
+  @IsNumber()
+  event: number;
 
-     @IsNumber()
-     event: number;
-
-     @IsNumber()
-     service: number;
- }
+  @IsNumber()
+  service: number;
+}

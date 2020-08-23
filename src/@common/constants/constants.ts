@@ -5,6 +5,7 @@ export enum configuration {
 export enum state {
     ACTIVE =  'ACTIVE',
     INACTIVE = 'INACTIVE ',
+    PENDING = "PENDING",
 }
  
 

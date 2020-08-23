@@ -22,6 +22,6 @@ export class EventService {
   @JoinColumn({ name: 'fk_service' })
   service: Service;
 
-  @Column({default: state.ACTIVE})
+  @Column({default: state.PENDING})
   state: string;
 }

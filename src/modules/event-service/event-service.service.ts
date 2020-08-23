@@ -28,4 +28,18 @@ export class EventServiceService {
       status: true,
     };
   }
+
+  async all(idEvent) {
+    const result = await this._eventServicioRepository
+      .createQueryBuilder('eventServicio')
+      .leftJoin("eventServicio.event", 'event')
+      .leftJoinAndSelect('eventServicio.service', 'service')
+      .where("event.id = :id", {id: idEvent}) 
+      .getMany();
+
+    return {
+      status: true,
+      result,
+    };
+  }
 }
