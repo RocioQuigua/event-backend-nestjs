@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { EventService } from 'entities/event_service.entity';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -19,6 +19,21 @@ export class EventServiceService {
 
   async create(body: CreateDTO) {
     const { event, service } = body;
+
+    const exists = await this._eventServicioRepository
+      .createQueryBuilder('eventService')
+      .leftJoinAndSelect('eventService.event', 'event')
+      .leftJoinAndSelect('eventService.service', 'service')
+      .where('event.id =:id  AND service.id =:idService', {
+        id: event,
+        idService: service,
+      })
+      .getMany();
+
+    if (exists) {
+      throw new NotFoundException('Ya existe el registro');
+    }
+
     const eventService = new EventService();
     eventService.service = await this._serviceRepository.findOne(service);
     eventService.event = await this._eventRepository.findOne(event);
@@ -32,9 +47,10 @@ export class EventServiceService {
   async all(idEvent) {
     const result = await this._eventServicioRepository
       .createQueryBuilder('eventServicio')
-      .leftJoin("eventServicio.event", 'event')
+      .leftJoin('eventServicio.event', 'event')
       .leftJoinAndSelect('eventServicio.service', 'service')
-      .where("event.id = :id", {id: idEvent}) 
+      .leftJoinAndSelect('service.empresa', 'empresa')
+      .where('event.id = :id', { id: idEvent })
       .getMany();
 
     return {
