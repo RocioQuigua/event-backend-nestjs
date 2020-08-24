@@ -29,7 +29,7 @@ export class ServiceController {
     return this._serviceService.getTypes();
   }
 
-  @Get('/types/create')
+  @Post('/types/create')
   createTypes(@Body() body: CreateTypeDTO) {
     return this._serviceService.createType(body);
   }
