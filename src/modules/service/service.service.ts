@@ -75,5 +75,12 @@ export class ServiceService {
       status: true,
     };
   }
-  async updateService() {}
+  async updateService() {
+    
+  }
+
+  async tipoServiceUpload(id, body: CreateTypeDTO) {
+    const result = await this._typeRepository.update(id, body);
+    return result;
+  }
 }

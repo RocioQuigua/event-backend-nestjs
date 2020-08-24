@@ -34,6 +34,12 @@ export class ServiceController {
     return this._serviceService.createType(body);
   }
 
+  @Post("/types/upload")
+  uploadType(@Body() body){
+    const { id, name} = body;
+    return this._serviceService.tipoServiceUpload(id, {name});
+  }
+
   @Post('/create')
   createService(@Body() body: CreateServiceDTO) {
     return this._serviceService.createService(body);
