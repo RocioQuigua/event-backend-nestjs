@@ -30,11 +30,33 @@ export class ServiceService {
     return services;
   }
 
+  async getAllType(idType) {
+    const result = await this._serviceRepository.find({
+      where: { typeService: { id: idType } },
+    });
+    return await result.length;
+  }
+
   async getTypes() {
     const types = await this._typeRepository.find({
       where: { state: state.ACTIVE },
     });
-    return types;
+
+    const result = [];
+    types.map(async (type, index )=> {
+
+     let num = await this.getAllType(type.id);
+  
+      result[index] = {
+        id: type.id,
+        name: type.name,
+        description: type.description, 
+        desx: num
+      };
+     });
+
+ 
+    return result;
   }
 
   async createType(body: CreateTypeDTO) {

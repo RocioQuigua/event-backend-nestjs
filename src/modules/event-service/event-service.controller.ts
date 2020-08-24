@@ -24,8 +24,8 @@ export class EventServiceController {
   }
 
   @Post('/changeState')
-  changeState(@Query() query) {
-    const { id } = query;
+  changeState(@Body() body) {
+    const { id } = body; 
     return this._service.changeState(id);
   }
 
