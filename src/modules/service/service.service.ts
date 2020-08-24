@@ -42,21 +42,7 @@ export class ServiceService {
       where: { state: state.ACTIVE },
     });
 
-    const result = [];
-    types.map(async (type, index )=> {
-
-     let num = await this.getAllType(type.id);
-  
-      result[index] = {
-        id: type.id,
-        name: type.name,
-        description: type.description, 
-        desx: num
-      };
-     });
-
- 
-    return result;
+    return types;
   }
 
   async createType(body: CreateTypeDTO) {
