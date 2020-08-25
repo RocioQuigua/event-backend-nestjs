@@ -37,6 +37,12 @@ export class ServiceService {
     return await result.length;
   }
 
+  async getType(id: number){
+    const type = await this._typeRepository.findOne(id);
+    return type;
+  }
+
+
   async getTypes() {
     const types = await this._typeRepository.find({
       where: { state: state.ACTIVE },

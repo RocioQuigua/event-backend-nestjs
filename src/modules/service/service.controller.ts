@@ -29,15 +29,21 @@ export class ServiceController {
     return this._serviceService.getTypes();
   }
 
+  @Get('/type')
+  getType(@Body() query) {
+    const { id } = query;
+    return this._serviceService.getType(id);
+  }
+
   @Post('/types/create')
   createTypes(@Body() body: CreateTypeDTO) {
     return this._serviceService.createType(body);
   }
 
-  @Post("/types/upload")
-  uploadType(@Body() body){
-    const { id, name} = body;
-    return this._serviceService.tipoServiceUpload(id, {name});
+  @Post('/types/upload')
+  uploadType(@Body() body) {
+    const { id, name } = body;
+    return this._serviceService.tipoServiceUpload(id, { name });
   }
 
   @Post('/create')
