@@ -1,51 +1,50 @@
-import { parse } from "dotenv";
-import * as Joi from "joi";
-import { existsSync, readFileSync } from "fs";
-import { Logger } from "@nestjs/common";
+import { parse } from 'dotenv';
+import { existsSync, readFileSync } from 'fs';
 
 interface EnvConfig {
-  [prop: string]: string;
+  [key: string]: string;
 }
 
 export class ConfigService {
   private readonly envConfig: EnvConfig;
   private readonly filePath = `.env`;
-  private logger = new Logger(`ConfigService`, true);
+  private readonly isLocal;
 
   constructor() {
-    if (!existsSync(this.filePath)) {
-      this.logger.error(`Config file ${this.filePath} not exists`);
-      throw new Error();
-    }
-    const config = parse(readFileSync(this.filePath, "utf-8"));
-    this.envConfig = this.validateInput(config);
+    this.envConfig = process.env.DB_HOST
+      ? process.env
+      : parse(readFileSync(this.filePath, 'utf-8'));
+    this.isLocal = this.envConfig.NODE_ENV == 'local';
   }
 
-  private validateInput(envConfig: EnvConfig): EnvConfig {
-    const envSchema: Joi.ObjectSchema = Joi.object({
-      NODE_ENV: Joi.string()
-        .valid("development", "production", "test", "provision")
-        .default("development"),
-      PORT: Joi.number(),
-      PREFIX: Joi.string(), 
-      JWT_SECRET: Joi.string(),
-    });
-
-    const { error, value: validateEnvConfig } = Joi.validate(
-      envConfig,
-      envSchema
-    );
-    if (error) {
-      this.logger.error(`Config validation error: ${error.message}`);
-      throw new Error();
-    }
-    return validateEnvConfig;
-  }
-
-  get(key: string): string{
+  get(key: string): string {
     return this.envConfig[key];
   }
+
+  get ormConfig(): any {
+    const pathEntities = [
+      !this.isLocal
+        ? 'dist/entities/**/*.entity.js'
+        : 'src/entities/**/*.entity.ts',
+    ];
+
+    const config = {
+      type: this.envConfig.DB_TYPE,
+      host: this.envConfig.DB_HOST,
+      port: this.envConfig.DB_PORT,
+      username: this.envConfig.DB_USERNAME,
+      password: this.envConfig.DB_PASSWORD,
+      database: this.envConfig.DB_DATABASE,
+      synchronize: true,
+      logging: false,
+    };
+
+    return {
+      ...config,
+      entities: pathEntities,
+    };
   }
+}
 
 export default new ConfigService();
 export const InstanceConfigService = new ConfigService();

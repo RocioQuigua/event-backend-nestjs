@@ -1,0 +1,13 @@
+Listado de usuario por cliente --> CLIENTE Y ADMIN
+
+
+Listao de empresario por servicio
+
+//Gestional rol 
+	-> Listado de roles 
+	-> Crear rol
+	-> Editar rol
+
+Revibir imagenes -> Creación de servicio, tipo
+
+Profile -> Editar mi información  -> Profile 	
